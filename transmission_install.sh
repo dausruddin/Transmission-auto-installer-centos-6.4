@@ -23,7 +23,7 @@ cd csf
 ./install.generic.sh
 cd /etc/csf
 sed -i 's/^TESTING =.*/TESTING = "0"/' csf.conf
-sed -i 's/^TCP_IN =.*/TCP_IN = "22,80,43434,9091,10000,51413"/' csf.conf
+sed -i 's/^TCP_IN =.*/TCP_IN = "22,80,9091,10000"/' csf.conf
 sed -i 's/^TCP_OUT =.*/TCP_OUT = "1:65535"/' csf.conf
 sed -i 's/^UDP_IN =.*/UDP_IN = "51413"/' csf.conf
 sed -i 's/^UDP_OUT =.*/UDP_OUT = "1:65535"/' csf.conf
@@ -75,7 +75,7 @@ sed -i 's/^.*rpc-password.*/"rpc-password": "placeholder321",/' settings.json
 sed -i "s/placeholder123/$uname/" settings.json
 sed -i "s/placeholder321/$passw/" settings.json
 
-# Upgrade libevent to 2.0.10
+# Upgrade libevent to 2.0.21
 cd /usr/local/src
 wget https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
 tar xf libevent-2.0.21-stable.tar.gz
@@ -84,5 +84,5 @@ cd libevent-2.0.21-stable
 make
 make install
 
-# Yay!!!
+# Done
 service transmissiond start
