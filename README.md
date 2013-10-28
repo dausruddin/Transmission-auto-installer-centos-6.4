@@ -19,5 +19,7 @@ Step:
 ----
 
 wget https://github.com/psycholyzern/Transmission-auto-installer-centos-6.4/raw/master/transmission_install.sh
+
 chmod u+x transmission_install.sh
+
 ./transmission_install.sh
