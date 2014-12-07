@@ -17,9 +17,9 @@ chmod g+w /home/$uname/Downloads/
 
 # Install libevent
 cd /usr/local/src
-wget https://github.com/downloads/libevent/libevent/libevent-2.0.19-stable.tar.gz
-tar xzf libevent-2.0.19-stable.tar.gz 
-cd libevent-2.0.19-stable
+wget http://sunet.dl.sourceforge.net/project/levent/libevent/libevent-2.0/libevent-2.0.21-stable.tar.gz
+tar xzf libevent-2.0.21-stable.tar.gz
+cd libevent-2.0.21-stable
 ./configure --prefix=/usr
 make
 make install
@@ -30,14 +30,14 @@ echo /usr/lib > /etc/ld.so.conf.d/libevent-x86_64.conf
 ldconfig
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig
 
-# Install Transmission 2.82
+# Install Transmission 2.84
 cd /usr/local/src
-wget http://download.transmissionbt.com/files/transmission-2.82.tar.xz
-tar -xf transmission-2.82.tar.xz
-cd transmission-2.82
+wget https://transmission.cachefly.net/transmission-2.84.tar.xz
+tar xvf transmission-2.84.tar.xz
+cd transmission-2.84
 ./configure --prefix=/usr
-make -s
-make -s install
+make
+make install
 
 # Set up init script for transmission-daemon
 cd /etc/init.d
@@ -60,15 +60,6 @@ sed -i 's/^.*rpc-username.*/"rpc-username": "placeholder123",/' settings.json
 sed -i 's/^.*rpc-password.*/"rpc-password": "placeholder321",/' settings.json
 sed -i "s/placeholder123/$uname/" settings.json
 sed -i "s/placeholder321/$passw/" settings.json
-
-# Upgrade libevent to 2.0.21
-cd /usr/local/src
-wget https://github.com/downloads/libevent/libevent/libevent-2.0.21-stable.tar.gz
-tar xf libevent-2.0.21-stable.tar.gz
-cd libevent-2.0.21-stable
-./configure
-make
-make install
 
 # Done
 service transmissiond start
